@@ -4,13 +4,13 @@ cakephp-twig-integration
 CakePHP installation with twig integration
 
 #Introduction
-CakePHP is a great framework to develop sites but I think that an interesting way to upgrade this MVC is to integrate TWIG engine to make easier, faster and better writing view file.
-With twig integration is possible to create a set of template for yor site.
+CakePHP is a great framework to develop sites but I think that an interesting way to upgrade this MVC is to integrate TWIG engine to make the writing of view files easier, faster and better.
+Twig integration allows to create a set of template for your site.
 
-When you clone this repository is possible to have all cakephp core and twig engine already integrated, is sufficint to create your twig file.
-Every dependencies or configuration is already done to use Twig.
 
-To understand how write Twig file you can see this link that allowed me to create this installation of cakephp:
+When you clone this repository cakephp core and twig engine are already integrated, you just need to create your twig files because all the dependencies and configurations are already written to use Twig engine.
+
+To learn how to write Twig files, look at this link that allowed me to create this cakephp installation:
 
 https://github.com/predominant/TwigView
 
