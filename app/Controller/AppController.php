@@ -33,5 +33,14 @@ App::uses('Controller', 'Controller');
 class AppController extends Controller {
 
 	public $viewClass = 'TwigView.Twig';
-	public $ext = '.twig.tpl'; 
+	public $ext = '.twig.tpl';
+	public $helpers = array('Html', 'Form', 'Session'); //'DebugKit.Toolbar'
+
+	public function afterFilter () {
+		
+    }
+
+    public function beforeFilter () {
+
+    }
 }
