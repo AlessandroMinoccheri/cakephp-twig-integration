@@ -141,7 +141,7 @@ class FormHelper extends AppHelper {
  * or get an already created instance of the model
  *
  * @param string $model Model name.
- * @return Model model instance
+ * @return Model|null Model instance
  */
 	protected function _getModel($model) {
 		$object = null;
@@ -2069,7 +2069,8 @@ class FormHelper extends AppHelper {
 					'id' => $attributes['id'] . ($style ? '' : '_'),
 					'secure' => false,
 					'form' => isset($attributes['form']) ? $attributes['form'] : null,
-					'name' => $attributes['name']
+					'name' => $attributes['name'],
+					'disabled' => $attributes['disabled'] === true || $attributes['disabled'] === 'disabled'
 				);
 				$select[] = $this->hidden(null, $hiddenAttributes);
 			}
