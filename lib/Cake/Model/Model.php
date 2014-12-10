@@ -1293,8 +1293,7 @@ class Model extends Object implements CakeEventListener {
 			return null;
 		}
 
-		if (
-			isset($data['hour']) &&
+		if (isset($data['hour']) &&
 			isset($data['meridian']) &&
 			!empty($data['hour']) &&
 			$data['hour'] != 12 &&
@@ -1699,6 +1698,8 @@ class Model extends Object implements CakeEventListener {
  * @param array $fieldList List of fields to allow to be saved
  * @return mixed On success Model::$data if its not empty or true, false on failure
  * @throws PDOException
+ * @triggers Model.beforeSave $this, array($options)
+ * @triggers Model.afterSave $this, array($created, $options)
  * @link http://book.cakephp.org/2.0/en/models/saving-your-data.html
  */
 	public function save($data = null, $validate = true, $fieldList = array()) {
@@ -2591,6 +2592,8 @@ class Model extends Object implements CakeEventListener {
  * @param int|string $id ID of record to delete
  * @param bool $cascade Set to true to delete records that depend on this record
  * @return bool True on success
+ * @triggers Model.beforeDelete $this, array($cascade)
+ * @triggers Model.afterDelete $this
  * @link http://book.cakephp.org/2.0/en/models/deleting-data.html
  */
 	public function delete($id = null, $cascade = true) {
@@ -2964,6 +2967,7 @@ class Model extends Object implements CakeEventListener {
  * @param string $type Type of find operation (all / first / count / neighbors / list / threaded)
  * @param array $query Option fields (conditions / fields / joins / limit / offset / order / page / group / callbacks)
  * @return array|null Query array or null if it could not be build for some reasons
+ * @triggers Model.beforeFind $this, array($query)
  * @see Model::find()
  */
 	public function buildQuery($type = 'first', $query = array()) {
@@ -3252,6 +3256,7 @@ class Model extends Object implements CakeEventListener {
  * @param array $results Results to filter
  * @param bool $primary If this is the primary model results (results from model where the find operation was performed)
  * @return array Set of filtered results
+ * @triggers Model.afterFind $this, array($results, $primary)
  */
 	protected function _filterResults($results, $primary = true) {
 		$event = new CakeEvent('Model.afterFind', $this, array($results, $primary));
@@ -3315,9 +3320,10 @@ class Model extends Object implements CakeEventListener {
 		}
 		if (!is_array($fields)) {
 			$fields = func_get_args();
-			if (is_bool($fields[count($fields) - 1])) {
-				$or = $fields[count($fields) - 1];
-				unset($fields[count($fields) - 1]);
+			$fieldCount = count($fields) - 1;
+			if (is_bool($fields[$fieldCount])) {
+				$or = $fields[$fieldCount];
+				unset($fields[$fieldCount]);
 			}
 		}
 

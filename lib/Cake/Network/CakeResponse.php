@@ -464,8 +464,7 @@ class CakeResponse {
 		);
 
 		$charset = false;
-		if (
-			$this->_charset &&
+		if ($this->_charset &&
 			(strpos($this->_contentType, 'text/') === 0 || in_array($this->_contentType, $whitelist))
 		) {
 			$charset = true;
@@ -1507,7 +1506,9 @@ class CakeResponse {
 	protected function _flushBuffer() {
 		//@codingStandardsIgnoreStart
 		@flush();
-		@ob_flush();
+		if (ob_get_level()) {
+			@ob_flush();
+		}
 		//@codingStandardsIgnoreEnd
 	}
 

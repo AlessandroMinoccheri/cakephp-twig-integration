@@ -1359,7 +1359,7 @@ class CakeEmail {
 		$cut = ($wrapLength == CakeEmail::LINE_LENGTH_MUST);
 
 		foreach ($lines as $line) {
-			if (empty($line)) {
+			if (empty($line) && $line !== '0') {
 				$formatted[] = '';
 				continue;
 			}
@@ -1481,8 +1481,7 @@ class CakeEmail {
 			$msg[] = '--' . $boundary;
 			$msg[] = 'Content-Type: ' . $fileInfo['mimetype'];
 			$msg[] = 'Content-Transfer-Encoding: base64';
-			if (
-				!isset($fileInfo['contentDisposition']) ||
+			if (!isset($fileInfo['contentDisposition']) ||
 				$fileInfo['contentDisposition']
 			) {
 				$msg[] = 'Content-Disposition: attachment; filename="' . $filename . '"';
