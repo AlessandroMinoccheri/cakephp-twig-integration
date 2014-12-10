@@ -1,7 +1,7 @@
 cakephp-twig-integration
 ========================
 
-CakePHP installation with twig integration with core version 2.5.6
+CakePHP installation with twig integration with core version 2.5.7
 
 #Introduction
 CakePHP is a great framework to develop sites but I think that an interesting way to upgrade this MVC is to integrate TWIG engine to make the writing of view files easier, faster and better.
